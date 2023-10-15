@@ -32,10 +32,8 @@ export function Table({}: TableProps) {
 
   return <div ref={tableRef} className={styles.table}>
     <div className={styles.list}>
-      <Cell keyTitle="Full name" value="Zhulinskiy Danil Ruslanovich" />
-      <Cell keyTitle="Полное имя" value="Жулинский Данил Русланович" />
-      <Cell keyTitle="English" value="A1 - A2" />
-      <Cell keyTitle="Birthday" value="29.01.2006" />
+      <Cell keyTitle="Name" value="Zhulinskiy Danil" />
+      <Cell keyTitle="English" value="A2" />
     </div>
   </div>
 }
