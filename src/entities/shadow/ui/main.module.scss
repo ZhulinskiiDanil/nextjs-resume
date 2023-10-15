@@ -1,0 +1,22 @@
+.shadow {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  transform: translate3d(-50%, 0, 0);
+  width: 100vw;
+  min-width: 1200px;
+  height: 100vh;
+  min-height: 600px;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at center -50%,
+    #5E8A43, transparent 70%
+  );
+  opacity: .6;
+
+  &.top {}
+
+  &.bottom {}
+}

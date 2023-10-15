@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  padding: 2rem 0rem;
+  background: rgba(255, 255, 255, 0.02);
+}

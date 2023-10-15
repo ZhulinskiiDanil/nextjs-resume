@@ -1,0 +1,76 @@
+.technology {
+  text-align: left;
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+
+    .head {
+      display: flex;
+      align-items: center;
+      gap: .625rem;
+
+      .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: relative;
+        width: 2.625rem;
+        height: 2.625rem;
+
+        border-radius: 0.625rem;
+        background: #F0F0F0;
+
+        img {
+          padding: 0.5rem;
+          object-fit: contain;
+        }
+      }
+
+      .title {
+        font-size: 2.25rem;
+      }
+
+      .type {
+        color: rgba(255, 255, 255, 0.20);
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+
+    .body {
+      font-size: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+
+    .title {
+      font-size: 1.25rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.progressBar {
+  position: fixed;
+  top: 50%;
+  right: 2rem;
+  transform: translate3d(0, -50%, 0);
+  height: min(50vh, 500px);
+  width: 2px;
+  background: #333;
+
+  .fill {
+    position: absolute;
+    width: 100%;
+    background: #bffca7;
+    box-shadow: 0 1rem 1rem 0 rgba(191, 252, 167, 0.2);
+  }
+}
+
+@media (max-width: 1025px) {
+  .progressBar {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+$one: calc(1vh + 5vw);
+
+.container {
+  --clientX: 0; // range from 0 to 1
+  --clientY: 0; // range from 0 to 1
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: calc($one * .18);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  .title {
+    $rotateRange: 40deg;
+    $rotateX: calc($rotateRange * var(--clientY) * -1 + $rotateRange / 2);
+    $rotateY: calc($rotateRange / 4 * var(--clientX) - $rotateRange / 8);
+
+    width: fit-content;
+    position: relative;
+    color: #E8FFDA;
+    font-size: 12.5em;
+    font-weight: 700;
+    transform: rotate($rotateY) rotateX($rotateX) rotateY($rotateY);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, .5em);
+      height: 25%;
+      width: 100%;
+
+      background: #A8FF73;
+      opacity: 0.5;
+    }
+  }
+}

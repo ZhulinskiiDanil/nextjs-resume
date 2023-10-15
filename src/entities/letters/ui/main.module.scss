@@ -1,0 +1,78 @@
+.container {
+  --scrollY: 0px;
+
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  font-family: Raleway;
+  font-size: 12.5rem;
+  font-weight: 900;
+  transition: 1s ease;
+
+  @media (max-width: 1260px) {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  .letter {
+    position: absolute;
+    display: inline-block;
+    transition: .15s cubic-bezier(.17,.67,.56,.87);
+
+    // Letter: Zh
+    &:nth-child(1) {
+      left: 10%;
+      top: 10%;
+      transform: translate3d(
+        0, calc(var(--scrollY) * 1), 0
+      );
+
+      [data-stroke] {
+        transform: translate3d(.5rem, .5rem, 0);
+      }
+    }
+
+    // Letter: D
+    &:nth-child(2) {
+      right: 5%;
+      top: 20%;
+      transform: translate3d(
+        0, calc(var(--scrollY) * 3), 0
+      );
+
+      [data-stroke] {
+        transform: translate3d(-.5rem, .5rem, 0);
+      }
+    }
+
+    // Letter: R
+    &:nth-child(3) {
+      left: 20%;
+      top: 75%;
+      transform: translate3d(
+        0, calc(var(--scrollY) * 5), 0
+      );
+
+      [data-stroke] {
+        transform: translate3d(.5rem, .5rem, 0);
+      }
+    }
+
+    [data-main] {
+      color: rgba(136, 255, 148, 0.05);
+      text-shadow: 0 0 3.5rem rgba(94, 138, 67, .2);
+    }
+
+    [data-stroke] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(94, 138, 67, 1);
+    }
+  }
+}

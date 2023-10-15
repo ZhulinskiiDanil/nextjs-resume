@@ -1,0 +1,72 @@
+.btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+
+  transition: .2s ease;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  background: #1F291D;
+  color: #fff;
+
+  &.beta::after {
+    content: 'BETA';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: absolute;
+    right: -0.625rem;
+    top: -0.625rem;
+
+    padding: 0.125rem 0.625rem;
+    border-radius: 0.25rem;
+    background: #4DCC8F;
+  }
+
+  &.mini {
+    padding: 0.5rem 0.8rem;
+    font-size: .8em;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &_default {
+    
+  }
+
+  &_primary {
+    background: #222;
+    color: white;
+  }
+
+  &_white {
+    background: white;
+    color: #222;
+    box-shadow: 0 0 20px 0;
+  }
+
+  &_light {
+    background: #394138;
+  }
+
+  &.fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
