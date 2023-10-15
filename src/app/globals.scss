@@ -24,6 +24,11 @@ font-family: 'Raleway', sans-serif;
   line-height: 1.15;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
+
+  @media (min-width: 767px) {
+    // For custom cursor chaser
+    cursor: none !important;
+  }
 }
 
 body {

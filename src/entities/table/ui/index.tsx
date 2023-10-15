@@ -34,6 +34,7 @@ export function Table({}: TableProps) {
     <div className={styles.list}>
       <Cell keyTitle="Name" value="Zhulinskiy Danil" />
       <Cell keyTitle="English" value="A2" />
+      <Cell keyTitle="Working" value="2 Year" />
     </div>
   </div>
 }
@@ -50,7 +51,7 @@ function Cell({
     setTimeout(() => setCopied(false), 1000);
   }
 
-  return <div className={styles.cell}>
+  return <div data-cursor-chaser className={styles.cell}>
     <div className={styles.top}></div>
     <div className={styles.left}></div>
     <div className={styles.right}></div>

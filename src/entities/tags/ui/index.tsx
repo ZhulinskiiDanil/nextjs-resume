@@ -16,7 +16,11 @@ export function Tags({ big, center, tags }: TagsProps) {
   if (!tags?.length) return <></>
 
   const tagsList = tags.map(tag => (
-    <div key={tag.value} className={styles.tag}>
+    <div
+      key={tag.value}
+      data-cursor-chaser
+      className={styles.tag}
+    >
       <span>
         { tag.value }
       </span>

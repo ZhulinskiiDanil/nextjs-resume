@@ -1,3 +1,4 @@
+import { CursorChaser } from '@/entities/cursorChaser/ui/CursorChaser'
 import './globals.scss'
 
 export const metadata = {
@@ -10,7 +11,10 @@ export default function RootLayout({ children }: {
 }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <CursorChaser />
+        { children }
+      </body>
     </html>
   )
 }

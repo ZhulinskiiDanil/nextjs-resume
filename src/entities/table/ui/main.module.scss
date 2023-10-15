@@ -1,8 +1,6 @@
 .table {
   --clientX: 0; // range from 0 to 1
-
-  display: flex;
-  flex-direction: column;
+  
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -11,13 +9,25 @@
   transform-style: preserve-3d;
   perspective: 1000px;
 
+  transition: .15s cubic-bezier(.17, .67, .56, .84);
+  transform: translate3d(
+    calc(5rem * var(--clientX) - 2.5rem),
+    calc(5rem * var(--clientY) - 2.5rem),
+    0
+  );
+
   .list {
     $rotateY: calc(20deg * var(--clientX) - 10deg);
-    $rotateX: calc(20deg * var(--clientY) * -1 + 10deg);
+    $rotateX: calc(40deg * var(--clientY) * -1 + 20deg);
     transform: rotate(calc($rotateY / 8)) rotateY($rotateY) rotateX($rotateX);
+
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
 
     transform-style: preserve-3d;
     perspective: 1000px;
+    background: rgba(228, 255, 131, 0.025);;
     box-shadow: 0 0 10rem 0 rgba(228, 255, 131, 0.05);
     will-change: box-shadow, transform;
   }
@@ -98,11 +108,11 @@
 
     .top {
       top: 0;
-      filter: brightness(140%);
+      filter: brightness(110%);
     }
 
     .bottom {
-      filter: brightness(60%);
+      filter: brightness(70%);
     }
 
     .key,

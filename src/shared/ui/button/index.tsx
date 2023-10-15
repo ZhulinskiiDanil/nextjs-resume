@@ -40,7 +40,7 @@ export function Button({
   })
 
   const button = createElement(semantic ? "button" : "div", {
-    ...props, className: classNames
+    ...props, className: classNames, "data-cursor-chaser": true
   }, children || content)
 
   if (link) {
