@@ -18,13 +18,26 @@ $one: calc(5vw + 1vh);
 
   &:not([data-active]) {
     .wrapper {
-      margin-top: 30vh;
+      margin-top: -30vh;
       opacity: 0;
     }
   }
 
   .wrapper {
     $shadowSize: 15%;
+    $innerShadowSize: $shadowSize / 2;
+
+    $maskGradient:
+      linear-gradient(
+        to top,
+        transparent $shadowSize,
+        rgba(0, 0, 0, .1) calc(50% - $innerShadowSize - 2rem),
+        rgba(0, 0, 0, 1) calc(50% - $innerShadowSize),
+        rgba(0, 0, 0, 1) calc(50% + $innerShadowSize),
+        rgba(0, 0, 0, .1) calc(50% + $innerShadowSize + 2rem),
+        transparent calc(100% - $shadowSize)
+      )
+    ;
 
     display: flex;
     justify-content: center;
@@ -37,14 +50,10 @@ $one: calc(5vw + 1vh);
     perspective: 1000px;
     height: calc($textHeight * 4);
     width: 100%;
-    mask-image: linear-gradient(
-      to top, transparent $shadowSize, black, transparent calc(100% - $shadowSize)
-    );
-    -webkit-mask-image: linear-gradient(
-      to top, transparent $shadowSize, black, transparent calc(100% - $shadowSize)
-    );
+    mask-image: $maskGradient;
+    -webkit-mask-image: $maskGradient;
     
-    transition: 2.5s cubic-bezier(.29,.36,.28,.98);
+    transition: 1.5s cubic-bezier(.29,.36,.28,.98);
   }
 
   .content {
@@ -72,10 +81,23 @@ $one: calc(5vw + 1vh);
       text-align: center;
       white-space: nowrap;
       font-size: calc($textHeight * .85);
+
       -webkit-backface-visibility: hidden; 
       backface-visibility: hidden;
       transform-style: preserve-3d;
       transition: .3s ease;
+
+      &:nth-child(3n) {
+        color: #baff9d;
+      }
+
+      &:nth-child(3n + 1) {
+        color: #9cffd9;
+      }
+
+      &:nth-child(3n + 2) {
+        color: #fadf96;
+      }
 
       .value {
         transform: translate3d(0, -50%, 0);
@@ -84,7 +106,7 @@ $one: calc(5vw + 1vh);
       }
 
       .pre {
-        font-weight: 300;
+        font-weight: 200;
       }
 
       .sub {
@@ -102,7 +124,7 @@ $one: calc(5vw + 1vh);
 
         &:hover {
           transform: rotateX(calc(360deg * $value)) translate3d(-50%, 0, calc($translateZ * 1.1));
-          color: #b1ffb1;
+          filter: hue-rotate(90deg);
         }
       }
     }
