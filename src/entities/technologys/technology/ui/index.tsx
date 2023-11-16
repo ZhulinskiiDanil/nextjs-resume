@@ -1,13 +1,16 @@
 'use client';
 import styles from './main.module.scss'
+import clsx from 'clsx';
+import { getTextIndexByProgress } from './model/getTextByProgress';
+import { uuid } from '@/common/funcs/uuid';
 
 // Components
 import Image from 'next/image'
 import { Button } from '@/shared/ui'
 import { Tags } from '@/entities/tags/ui'
+
+// Hooks
 import { useEffect, useRef, useState } from 'react'
-import { getTextIndexByProgress } from './model/getTextByProgress';
-import clsx from 'clsx';
 
 type TechnologyProps = {
   type: string
@@ -27,7 +30,7 @@ export function Technology({
     index: -1, filled: 0
   })
   const spans = body.split(' ').map(elm => ({
-    id: self.crypto.randomUUID(), content: elm
+    id: uuid(), content: elm
   }))
 
   useEffect(() => {
@@ -58,12 +61,13 @@ export function Technology({
           spans.map(span => span.content), progress
         )
         
-        setActiveWord(pre => ({
-          ...pre,
+        setActiveWord({
           index: Math.max(word.index, -1),
           filled: Math.max(word.filled, 0)
-        }))
+        })
         elm.style.setProperty('--progress', String(progress))
+      } else {
+        setActiveWord({ index: 0, filled: 0 })
       }
     }
 
