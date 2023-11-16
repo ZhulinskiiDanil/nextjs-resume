@@ -12,9 +12,33 @@ import { Technologys } from '@/entities/technologys/ui'
 import { Tags } from '@/entities/tags/ui'
 import { ScrollProgressBar } from '@/entities/scrollProgressBar/ui/ScrollProgressBar'
 import { Preloader } from '@/entities/preloader/ui/Preloader'
-import { Table } from '@/entities/table/ui'
+// import { Table } from '@/entities/table/ui'
+import { Carousel } from '@/entities/carousel/ui'
 
 function Component() {
+  const tags = [
+    { value: "JavaScript" },
+    { value: "TypeScript" },
+    { value: "React" },
+    { value: "Next" },
+    { value: "SWR" },
+    { value: "SSR Components" },
+    { value: "REST API" },
+    { value: "GraphQL" },
+    { value: "Node.js" },
+    { value: "Node + Express" },
+    { value: "CRUD" },
+    { value: "Reduxtjs/toolkit" },
+    { value: "Git" },
+    { value: "Conventional commits naming" },
+    { value: "Clsx (React)" },
+    { value: "ClassNames (React)" },
+    { value: "Vue" },
+    { value: "Nuxt" },
+    { value: "Nest" },
+    { value: "Postgress" }
+  ]
+
   return <div className={styles.container}>
     {/* DECOR */}
     <Letters />
@@ -34,32 +58,12 @@ function Component() {
         <SectionTitle title='Hard Skills' />
         <Tags
           big center
-          tags={[
-            { value: "JavaScript" },
-            { value: "TypeScript" },
-            { value: "React" },
-            { value: "Next" },
-            { value: "SWR" },
-            { value: "SSR Components" },
-            { value: "REST API" },
-            { value: "GraphQL" },
-            { value: "Node.js" },
-            { value: "Node + Express" },
-            { value: "CRUD" },
-            { value: "Reduxtjs/toolkit" },
-            { value: "Git" },
-            { value: "Conventional commits naming" },
-            { value: "Clsx (React)" },
-            { value: "ClassNames (React)" },
-            { value: "Vue" },
-            { value: "Nuxt" },
-            { value: "Nest" },
-            { value: "Postgress" }
-          ]}
+          tags={tags}
         />
       </Section>
       <Section>
-        <Table />
+        {/* <Table /> */}
+        <Carousel />
       </Section>
     </div>
   </div>

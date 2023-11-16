@@ -1,0 +1,110 @@
+$one: calc(5vw + 1vh);
+
+.carousel {
+  --progress: 0;
+  $shadowSize: calc($one * 5);
+  $textHeight: calc($one * 1.3);
+
+  position: relative;
+  height: 600vh;
+  width: 100vw;
+  left: calc(50% - 50vw);
+  mask-image: linear-gradient(
+    to top, transparent, black $shadowSize, black calc(100% - $shadowSize), transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to top, transparent, black $shadowSize, black calc(100% - $shadowSize), transparent
+  );
+
+  &:not([data-active]) {
+    .wrapper {
+      margin-top: 30vh;
+      opacity: 0;
+    }
+  }
+
+  .wrapper {
+    $shadowSize: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    perspective: 1000px;
+    height: calc($textHeight * 4);
+    width: 100%;
+    mask-image: linear-gradient(
+      to top, transparent $shadowSize, black, transparent calc(100% - $shadowSize)
+    );
+    -webkit-mask-image: linear-gradient(
+      to top, transparent $shadowSize, black, transparent calc(100% - $shadowSize)
+    );
+    
+    transition: 2.5s cubic-bezier(.29,.36,.28,.98);
+  }
+
+  .content {
+    $translateZ: calc($one * 1.7);
+
+    position: relativea;
+    left: 50%;
+    top: 50%;
+    height: 0;
+    width: 0;
+    transform: rotateX(calc(360deg * var(--progress))) translate3d(-50%, -50%, 0);
+    transform-style: preserve-3d;
+    transition: .5s cubic-bezier(.19,.57,.52,.88);
+
+    .text:nth-child(n + 11) {
+      display: none;
+    }
+  
+    .text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 0;
+      
+      text-align: center;
+      white-space: nowrap;
+      font-size: calc($textHeight * .85);
+      -webkit-backface-visibility: hidden; 
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transition: .3s ease;
+
+      .value {
+        transform: translate3d(0, -50%, 0);
+        height: $textHeight;
+        transform-origin: 0 0;
+      }
+
+      .pre {
+        font-weight: 300;
+      }
+
+      .sub {
+        font-weight: bold;
+      }
+    }
+  
+    @for $i from 1 through 10 {
+      $value: calc(#{$i} / 10);
+
+      .text:nth-child(#{$i}) {
+        opacity: .5;
+        transform: rotateX(calc(360deg * $value)) translate3d(-50%, 0, $translateZ);
+        transform-origin: 0 0;
+
+        &:hover {
+          transform: rotateX(calc(360deg * $value)) translate3d(-50%, 0, calc($translateZ * 1.1));
+          color: #b1ffb1;
+        }
+      }
+    }
+  }
+}
