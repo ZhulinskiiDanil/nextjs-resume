@@ -88,15 +88,24 @@ $one: calc(5vw + 1vh);
       transition: .3s ease;
 
       &:nth-child(3n) {
-        color: #baff9d;
+        .sub {
+          -webkit-text-stroke: calc($one * .005) #baff9d;
+          text-shadow: 0 0 calc($one * 1) rgba(186, 255, 157, 0.2);
+        }
       }
 
       &:nth-child(3n + 1) {
-        color: #9cffd9;
+        .sub {
+          -webkit-text-stroke: calc($one * .005) #9cffd9;
+          text-shadow: 0 0 calc($one * 1) rgba(156, 255, 217, 0.2);
+        }
       }
 
       &:nth-child(3n + 2) {
-        color: #fadf96;
+        .sub {
+          -webkit-text-stroke: calc($one * .005) #fadf96;
+          text-shadow: 0 0 calc($one * 1) rgba(250, 223, 150, 0.2);
+        }
       }
 
       .value {
@@ -107,10 +116,12 @@ $one: calc(5vw + 1vh);
 
       .pre {
         font-weight: 200;
+        opacity: .6;
       }
 
       .sub {
-        font-weight: bold;
+        color: transparent;
+        font-weight: 900;
       }
     }
   
