@@ -111,7 +111,17 @@
     }
   }
 
+  &:has(~ [data-light-cursor]:hover),
+  &:has(~ * [data-light-cursor]:hover) {
+    .smoothChaser {
+      &::after {
+        border-color: rgba(0, 0, 0, .4);
+      }
+    }
+  }
+
   &:has(~ * button:hover),
+  &:has(~ button:hover),
   &:has(~ * a:hover),
   &:has(~ a:hover),
   &:has(~ * input:hover),

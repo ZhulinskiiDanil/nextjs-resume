@@ -20,17 +20,19 @@ interface IButton {
   beta?: boolean
   mini?: boolean
   hidden?: boolean
+  theme?: 'dark' | 'light'
   [key: string]: any
 }
 
 export function Button({
-  children, content, link, type, fill, hidden,
+  children, content, link, type, theme, fill, hidden,
   className, beta, mini, semantic = true, ...props
 }: IButton) {
   const classNames = clsx({
     [styles.btn]: true,
     [String(className)]: true,
     [styles[`btn_${type}`]]: true,
+    [styles[String(theme)]]: true,
 
     // Dynamic class names
     [styles.fill]: fill,

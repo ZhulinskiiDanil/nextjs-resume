@@ -39,12 +39,13 @@
     }
   }
 
-  &.hidden {
-    display: none;
+  &.light {
+    background: #C8F5E0;
+    color: #000;
   }
 
-  &_default {
-    
+  &.hidden {
+    display: none;
   }
 
   &_primary {
@@ -56,10 +57,6 @@
     background: white;
     color: #222;
     box-shadow: 0 0 20px 0;
-  }
-
-  &_light {
-    background: #394138;
   }
 
   &.fill {

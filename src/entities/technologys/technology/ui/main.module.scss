@@ -1,11 +1,27 @@
 .technology {
+  --progress: 0;
+
   text-align: left;
   display: flex;
+  flex-direction: column;
+  padding: 4rem 2rem;
   gap: 2rem;
 
+  position: relative;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 100vw;
+
+  background: #EEFFE7;
+  color: #000;
+
   @media (max-width: 767px) {
-    flex-direction: column;
     max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cw {
+    max-width: var(--cw);
     margin: 0 auto;
   }
 
@@ -22,6 +38,9 @@
       gap: .625rem;
 
       .image {
+        position: relative;
+        z-index: 0;
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -30,8 +49,17 @@
         width: 2.625rem;
         height: 2.625rem;
 
-        border-radius: 0.625rem;
-        background: #F0F0F0;
+        &::after {
+          content: '';
+          z-index: -1;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #B1FFC3;
+          filter: blur(20px);
+        }
 
         img {
           padding: 0.5rem;
@@ -44,21 +72,36 @@
       }
 
       .type {
-        color: rgba(255, 255, 255, 0.20);
+        color: rgba(0, 0, 0, 0.4);
         font-size: 1rem;
         font-weight: 300;
       }
     }
 
     .body {
-      font-size: 1rem;
-    }
-
-    .buttons {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      font-size: 4rem;
+      font-weight: 900;
+      gap: .25em;
+      letter-spacing: .01em;
+
+      span {
+        display: inline-block;
+
+        --filled: 0;
+        $progress: calc(var(--filled) * 100%);
+      
+        color: #D2F4C3;
+
+        &.active {
+          background: linear-gradient(
+            120deg, #000 $progress, #D2F4C3 $progress
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
     }
   }
 
@@ -66,11 +109,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 2rem;
     width: 100%;
     gap: 1rem;
+  }
 
-    .title {
-      font-size: 1.25rem;
-    }
+  .buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1rem;
   }
 }

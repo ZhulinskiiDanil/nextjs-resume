@@ -55,13 +55,6 @@ function Component() {
         <Technologys />
       </Section>
       <Section>
-        <SectionTitle title='Hard Skills' />
-        <Tags
-          big center
-          tags={tags}
-        />
-      </Section>
-      <Section>
         {/* <Table /> */}
         <Carousel />
       </Section>
