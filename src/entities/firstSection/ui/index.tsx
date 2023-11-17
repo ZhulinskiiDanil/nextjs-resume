@@ -33,7 +33,7 @@ function AnimatedLine({ reverse }: { reverse?: boolean }) {
       reverse && styles.reverse
     ])} xmlns="http://www.w3.org/2000/svg" width="2186" height="361" viewBox="0 0 2186 361" fill="none">
       <Tween
-        delay={.6}
+        delay={1.5}
         from={{ svgDraw: [0, 0] }}
         to={{ svgDraw: [1, 1] }}
       >
