@@ -1,5 +1,8 @@
+$one: calc(5vw + 1vh);
+
 .technology {
   --progress: 0;
+  --animationProgress: 0;
 
   text-align: left;
   display: flex;
@@ -11,14 +14,10 @@
   left: 50%;
   transform: translate3d(-50%, 0, 0);
   width: 100vw;
+  overflow: hidden;
 
   background: #EEFFE7;
   color: #000;
-
-  @media (max-width: 767px) {
-    max-width: 600px;
-    margin: 0 auto;
-  }
 
   .cw {
     max-width: var(--cw);
@@ -33,6 +32,8 @@
     gap: 1rem;
 
     .head {
+      position: relative;
+
       display: flex;
       align-items: center;
       gap: .625rem;
@@ -79,19 +80,29 @@
     }
 
     .body {
+      $fontSize: min($one, 4rem);
+      $progress: min(calc(var(--animationProgress) + .6), 1);
+      $topFrom: 120px;
+      
+      position: relative;
+      top: calc($topFrom - $topFrom * $progress);
+      
       display: flex;
       flex-wrap: wrap;
+      gap: calc($fontSize * .3);
+
       font-size: 4rem;
       font-weight: 900;
-      gap: .25em;
       letter-spacing: .01em;
-
+      
       span {
         display: inline-block;
 
         --filled: 0;
         $progress: calc(var(--filled) * 100%);
       
+        font-size: $fontSize;
+        line-height: calc(.8 + .35 * $progress);
         color: #D2F4C3;
 
         &.active {

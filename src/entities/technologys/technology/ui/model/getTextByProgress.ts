@@ -1,7 +1,7 @@
-function getProgressInRange(
-  from: number, to: number, curr: number
-) {
-  return (curr - from) / Math.abs(from - to)
+import gsap from "gsap";
+
+function getProgressInRange(from: number, to: number, curr: number) {
+  return gsap.utils.mapRange(from, to, 0, 1)(curr)
 }
 
 export function getTextIndexByProgress(

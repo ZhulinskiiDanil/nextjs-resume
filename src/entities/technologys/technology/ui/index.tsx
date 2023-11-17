@@ -11,6 +11,7 @@ import { Tags } from '@/entities/tags/ui'
 
 // Hooks
 import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap';
 
 type TechnologyProps = {
   type: string
@@ -34,13 +35,47 @@ export function Technology({
   }))
 
   useEffect(() => {
+    const elm = technologyRef.current
+    if (!elm) return
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: elm,
+        start: '-25% center',
+        end: 'bottom center',
+        scrub: true,
+        onUpdate: (self) => {
+          elm.style.setProperty('--animationProgress', String(self.progress))
+        }
+      },
+    })
+
+    const tm = setTimeout(() => {
+      tl.from(elm, {
+        opacity: 0,
+        top: '20vh'
+      })
+    
+      tl.to(elm, {
+        opacity: 1,
+        top: 0
+      });
+    }, 250)
+
+    return () => {
+      clearTimeout(tm)
+      tl.remove(tl)
+    }
+  }, [technologyRef])
+
+  useEffect(() => {
     function onScroll() {
       const elm = technologyRef.current
       if (!elm) return
       
       const { y } = elm.getBoundingClientRect()
-      const height = window.innerHeight * 1.5
-
+      const height = window.innerHeight / 2
+      
       if (y - window.innerHeight / 2 < 0) {
         elm.setAttribute('data-active', '')
       } else {
@@ -49,13 +84,8 @@ export function Technology({
       
       if (y - window.innerHeight / 2.5 < 0) {
         const top = Math.abs(y - window.innerHeight / 2.5)
-        const progress = Math.floor( // 0.00 - 1.00
-          Math.min(
-            Math.max(
-              top / (height - window.innerHeight), 0
-            ), 1
-          ) * 100
-        ) / 100
+        const topToProgress = gsap.utils.mapRange(0, height, 0, 1)
+        const progress = Math.min(topToProgress(top), 1)
 
         const word = getTextIndexByProgress(
           spans.map(span => span.content), progress
