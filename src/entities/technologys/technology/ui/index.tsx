@@ -46,6 +46,16 @@ export function Technology({
         scrub: true,
         onUpdate: (self) => {
           elm.style.setProperty('--animationProgress', String(self.progress))
+        
+          const word = getTextIndexByProgress(
+            spans.map(span => span.content),
+            Math.min(self.progress * 1.5, 1)
+          )
+          
+          setActiveWord({
+            index: Math.max(word.index, -1),
+            filled: Math.max(word.filled, 0)
+          })
         }
       },
     })
@@ -67,45 +77,6 @@ export function Technology({
       tl.remove(tl)
     }
   }, [technologyRef])
-
-  useEffect(() => {
-    function onScroll() {
-      const elm = technologyRef.current
-      if (!elm) return
-      
-      const { y } = elm.getBoundingClientRect()
-      const height = window.innerHeight / 2
-      
-      if (y - window.innerHeight / 2 < 0) {
-        elm.setAttribute('data-active', '')
-      } else {
-        elm.removeAttribute('data-active')
-      }
-      
-      if (y - window.innerHeight / 2.5 < 0) {
-        const top = Math.abs(y - window.innerHeight / 2.5)
-        const topToProgress = gsap.utils.mapRange(0, height, 0, 1)
-        const progress = Math.min(topToProgress(top), 1)
-
-        const word = getTextIndexByProgress(
-          spans.map(span => span.content), progress
-        )
-        
-        setActiveWord({
-          index: Math.max(word.index, -1),
-          filled: Math.max(word.filled, 0)
-        })
-        elm.style.setProperty('--progress', String(progress))
-      } else {
-        setActiveWord({ index: 0, filled: 0 })
-      }
-    }
-
-    window.addEventListener('scroll', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [technologyRef, spans])
 
   return <div ref={technologyRef} className={styles.technology}>
     <div className={styles.cw}>
