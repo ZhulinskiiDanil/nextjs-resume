@@ -12,22 +12,23 @@
   transition: .2s ease;
   padding: 0.625rem 1.25rem;
   border-radius: 0.625rem;
-  background: #1F291D;
+  background: #344B40;
   color: #fff;
 
   &.beta::after {
     content: 'BETA';
     display: flex;
     justify-content: center;
+    padding: 0.125rem 0.625rem;
     align-items: center;
     
     position: absolute;
     right: -0.625rem;
     top: -0.625rem;
 
-    padding: 0.125rem 0.625rem;
+    color: white;
+    background: #4DCC96;
     border-radius: 0.25rem;
-    background: #4DCC8F;
   }
 
   &.mini {
