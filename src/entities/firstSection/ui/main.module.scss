@@ -18,6 +18,8 @@
     transform: translate3d(-50%, -50%, 0);
     width: 100vw;
 
+    pointer-events: none;
+
     &.reverse {
       transform: rotateY(180deg) translate3d(-50%, -50%, 0);
       transform-origin: 0 0;

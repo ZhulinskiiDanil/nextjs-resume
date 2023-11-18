@@ -33,8 +33,9 @@ $one: calc(1vh + 5vw);
     transform-style: preserve-3d;
     perspective: 1000px;
 
-    &::after {
-      content: '';
+    transition: 1s cubic-bezier(.17,.67,.55,.87);
+
+    .line {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -44,6 +45,11 @@ $one: calc(1vh + 5vw);
 
       background: #A8FF73;
       opacity: 0.5;
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
     }
   }
 }

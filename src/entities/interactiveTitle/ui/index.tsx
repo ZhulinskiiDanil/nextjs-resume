@@ -1,5 +1,11 @@
-import { useEffect, useRef } from 'react'
 import styles from './main.module.scss'
+
+// Funcs
+import { uuid } from '@/common/funcs/uuid'
+
+// Hooks
+import { useEffect, useMemo, useRef } from 'react'
+import { startAnimation } from '../model/startAnimation'
 
 type InteractiveTitleProps = {
   title: string
@@ -9,7 +15,21 @@ export function InteractiveTitle({
   title
 }: InteractiveTitleProps) {
   const parentRef = useRef<HTMLDivElement | null>(null)
+  const spans = useMemo(() => (
+    title.split('').map(text => ({
+      id: uuid(),
+      content: text
+    }))
+  ), [])
 
+  // GSAP Animations
+  useEffect(() => {
+    if (parentRef.current) {
+      startAnimation(parentRef.current)
+    }
+  }, [parentRef])
+
+  // Looking for cursor
   useEffect(() => {
     function mousemove(e: MouseEvent) {
       const x = e.clientX / window.innerWidth
@@ -34,6 +54,13 @@ export function InteractiveTitle({
   }, [parentRef])
 
   return <section ref={parentRef} className={styles.container}>
-    <h2 className={styles.title}>{ title }</h2>
+    <div className={styles.title}>
+      <div data-line className={styles.line}></div>
+      {spans.map(span => (
+        <span key={span.id}>
+          { span.content }
+        </span>
+      ))}
+    </div>
   </section>
 }
