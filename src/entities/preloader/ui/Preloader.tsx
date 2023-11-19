@@ -13,10 +13,12 @@ export function Preloader() {
   const { emit } = usePreLoader()
 
   useEffect(() => {
-    setTimeout(() => {
-      emit('end')
-    }, 1500)
-  }, [])
+    if (preloaderRef.current) {
+      setTimeout(() => {
+        emit('end')
+      }, 1500)
+    }
+  }, [preloaderRef])
 
   return <div ref={preloaderRef} className={styles.preloader}>
     <div className={styles.circle} />

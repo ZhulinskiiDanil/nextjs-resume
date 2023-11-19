@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 // Hooks
 import { usePreLoader } from '@/shared/hooks/useLoader'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 // Components
 import { InteractiveTitle } from '@/entities/interactiveTitle/ui'
@@ -31,13 +31,17 @@ export function FirstSection() {
 }
 
 function AnimatedLine({ reverse }: { reverse?: boolean }) {
-  const { onPreloader } = usePreLoader()
+  const { onPreloader, removeListener } = usePreLoader()
   const [vissible, setVissible] = useState(false)
 
-  useEffect(() => {
-    onPreloader('end', () => {
+  useLayoutEffect(() => {
+    const listener = onPreloader('end', () => {
       setVissible(true)
     })
+
+    return () => {
+      removeListener(listener)
+    }
   }, [])
 
   if (!vissible) return <></>

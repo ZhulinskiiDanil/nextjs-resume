@@ -16,7 +16,7 @@ export function InteractiveTitle({
   title
 }: InteractiveTitleProps) {
   const parentRef = useRef<HTMLDivElement | null>(null)
-  const { onPreloader } = usePreLoader()
+  const { onPreloader, removeListener } = usePreLoader()
   const letters = title.split('')
   const spans = useMemo(() => (
     letters.map(text => ({
@@ -28,11 +28,15 @@ export function InteractiveTitle({
   // GSAP Animations
   useEffect(() => {
     if (parentRef.current) {
-      onPreloader('end', () => {
+      const listener = onPreloader('end', () => {
         if (parentRef.current) {
           startAnimation(parentRef.current)
         }
       })
+
+      return () => {
+        removeListener(listener)
+      }
     }
   }, [parentRef.current])
 

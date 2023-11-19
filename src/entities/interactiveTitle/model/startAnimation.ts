@@ -3,8 +3,8 @@ import gsap from "gsap"
 let mainTL = gsap.timeline()
 let infiniteAnimationTL = gsap.timeline()
 export function startAnimation(div: HTMLDivElement) {
-  mainTL.kill()
-  infiniteAnimationTL.kill()
+  console.log('Start animation');
+  
   const { line, spans } = defineChildrens(div)
   
   mainTL = gsap.timeline()
