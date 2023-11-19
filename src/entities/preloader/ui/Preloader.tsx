@@ -15,7 +15,7 @@ export function Preloader() {
   useEffect(() => {
     setTimeout(() => {
       emit('end')
-    }, 3000)
+    }, 1500)
   }, [])
 
   return <div ref={preloaderRef} className={styles.preloader}>

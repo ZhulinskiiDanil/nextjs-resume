@@ -1,9 +1,8 @@
 import { CursorChaser } from '@/entities/cursorChaser/ui/CursorChaser'
-import './globals.scss'
 
 export const metadata = {
-  title: 'Zhulinskiy Danil',
-  description: 'My personal web site about me and my job, welcome :3'
+  title: 'Zhulinskiy / About',
+  description: 'About me',
 }
 
 export default function RootLayout({ children }: {
