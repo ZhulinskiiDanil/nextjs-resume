@@ -8,12 +8,8 @@ export const metadata = {
 export default function RootLayout({ children }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="ru">
-      <body>
-        <CursorChaser />
-        { children }
-      </body>
-    </html>
-  )
+  return <>
+    <CursorChaser />
+    { children }
+  </>
 }

@@ -31,7 +31,7 @@ export function CursorChaser() {
       document.removeEventListener('mouseup', mouseUpHandler)
       document.removeEventListener("mousemove", mouseMoveHandler)
     }
-  }, [])
+  }, [ref.current])
 
   return <div ref={ref} className={[
     styles.container,
