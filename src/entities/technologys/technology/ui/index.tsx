@@ -41,8 +41,8 @@ export function Technology({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: elm,
-        start: '-25% center',
-        end: 'bottom center',
+        start: 'top bottom-=30%',
+        end: 'bottom bottom-=30%',
         scrub: true,
         onUpdate: (self) => {
           elm.style.setProperty('--animationProgress', String(self.progress))
