@@ -17,12 +17,13 @@ export function InteractiveTitle({
 }: InteractiveTitleProps) {
   const parentRef = useRef<HTMLDivElement | null>(null)
   const { onPreloader } = usePreLoader()
+  const letters = title.split('')
   const spans = useMemo(() => (
-    title.split('').map(text => ({
+    letters.map(text => ({
       id: uuid(),
       content: text
     }))
-  ), [])
+  ), [letters])
 
   // GSAP Animations
   useEffect(() => {
