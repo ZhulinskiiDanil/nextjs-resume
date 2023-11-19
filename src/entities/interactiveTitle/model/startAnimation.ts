@@ -1,8 +1,10 @@
 import gsap from "gsap"
 
 let mainTL = gsap.timeline()
+let infiniteAnimationTL = gsap.timeline()
 export function startAnimation(div: HTMLDivElement) {
   mainTL.kill()
+  infiniteAnimationTL.kill()
   const { line, spans } = defineChildrens(div)
   
   mainTL = gsap.timeline()
@@ -45,11 +47,11 @@ export function startAnimation(div: HTMLDivElement) {
   })
 }
 
-let infiniteAnimationTL = gsap.timeline()
 function infiniteAnimation(div: HTMLDivElement) {
   infiniteAnimationTL.kill()
   // const { line, spans } = defineChildrens(div)
-
+  
+  infiniteAnimationTL = gsap.timeline()
   // TODO: Animate letters
 }
 
