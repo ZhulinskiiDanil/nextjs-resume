@@ -13,6 +13,8 @@
   background: #9ccf7e;
   animation: ShowBackground 3s cubic-bezier(.47,.23,0,1.77);
 
+  pointer-events: none;
+
   @keyframes ShowBackground {
     from {
       opacity: 1;

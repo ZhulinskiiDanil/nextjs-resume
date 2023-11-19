@@ -1,11 +1,12 @@
 import styles from './main.module.scss'
+import { startAnimation } from '../model/startAnimation'
 
 // Funcs
 import { uuid } from '@/common/funcs/uuid'
 
 // Hooks
+import { usePreLoader } from '@/shared/hooks/useLoader'
 import { useEffect, useMemo, useRef } from 'react'
-import { startAnimation } from '../model/startAnimation'
 
 type InteractiveTitleProps = {
   title: string
@@ -15,6 +16,7 @@ export function InteractiveTitle({
   title
 }: InteractiveTitleProps) {
   const parentRef = useRef<HTMLDivElement | null>(null)
+  const { onPreloader } = usePreLoader()
   const spans = useMemo(() => (
     title.split('').map(text => ({
       id: uuid(),
@@ -25,9 +27,13 @@ export function InteractiveTitle({
   // GSAP Animations
   useEffect(() => {
     if (parentRef.current) {
-      startAnimation(parentRef.current)
+      onPreloader('end', () => {
+        if (parentRef.current) {
+          startAnimation(parentRef.current)
+        }
+      })
     }
-  }, [parentRef])
+  }, [parentRef.current])
 
   // Looking for cursor
   useEffect(() => {

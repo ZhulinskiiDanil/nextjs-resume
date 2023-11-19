@@ -1,22 +1,23 @@
+'use client';
 import styles from './main.module.scss'
 
 // Components
 import Image from 'next/image'
 
 // Hooks
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { usePreLoader } from '@/shared/hooks/useLoader'
 
 export function Preloader() {
   const preloaderRef = useRef<HTMLDivElement | null>(null)
-  const [vissible, setVissible] = useState(true)
+  const { emit } = usePreLoader()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
-      setVissible(false)
-    }, 3000)
+      emit('end')
+    }, 700)
   }, [])
 
-  if (!vissible) return <></>
   return <div ref={preloaderRef} className={styles.preloader}>
     <div className={styles.circle} />
     <p className={styles.logo}>
