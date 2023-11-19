@@ -6,7 +6,7 @@ $one: calc(5vw + 1vh);
   $textHeight: calc($one * 1.3);
 
   position: relative;
-  height: 600vh;
+  height: 200vh;
   width: 100vw;
   left: calc(50% - 50vw);
   mask-image: linear-gradient(
