@@ -23,7 +23,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/prisma/*": ["./prisma/*"],
+      "@/prisma/*": ["./libs/prisma/*"],
+      "@/prisma": ["./libs/prisma/index"],
 
       // Public
       "@public/*": ["./public/*"],
