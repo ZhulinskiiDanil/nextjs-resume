@@ -12,59 +12,73 @@ export function Curtains() {
     const curtains = curtainsRef.current
 
     if (curtains) {
-      const tweensFromTo: gsap.TweenVars[] = [{
-        filter: 'blur(300px) opacity(0) grayscale(100%)',
-        rotate: 30,
-        paused: true
-      }, {
-        filter: 'blur(0px) opacity(1) grayscale(0%)',
-        rotate: 0,
-        paused: true
-      }]
       const q = gsap.utils.selector(curtains),
-        first = q('[data-curtain-first]'),
-        second = q('[data-curtain-second]')
+        curtain1 = q('[data-curtain]:nth-child(1)'),
+        curtain2 = q('[data-curtain]:nth-child(2)'),
+        curtain3 = q('[data-curtain]:nth-child(3)'),
+        curtain4 = q('[data-curtain]:nth-child(4)')
 
-      const firstTweenTo = gsap.fromTo(first, {
-        ...tweensFromTo[0],
-        y: '-100vh'
-      }, {
-        ...tweensFromTo[1],
-        y: '0vh'
-      })
-
-      const secondTweenTo = gsap.fromTo(second, {
-        ...tweensFromTo[0],
-        y: '200vh'
-      }, {
-        ...tweensFromTo[1],
-        y: '50vh'
-      })
-
-      const action = gsap.set(curtains, {
-        visibility: 'visible',
-        paused: true
-      })
-
-      gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: curtains,
           start: 'top center',
           end: 'bottom-=50% center',
           scrub: true,
-          onEnter: () => action.play(),
-          onLeaveBack: () => action.reverse(),
-          onUpdate: (self) => {
-            firstTweenTo.progress(self.progress)
-            secondTweenTo.progress(self.progress)
+          onEnter() {
+            curtains.classList.add(styles.active)
+          },
+          onLeaveBack() {
+            curtains.classList.remove(styles.active)
           }
         }
       })
+      
+      // Inner
+      tl.fromTo(curtain1, {
+        filter: 'opacity(0) grayscale(100%) blur(100px)',
+        rotate: 30,
+        y: '-100vh'
+      }, {
+        filter: 'opacity(1) grayscale(0%) blur(0px)',
+        rotate: 0,
+        y: '0vh'
+      })
+      .fromTo(curtain2, {
+        filter: 'opacity(0) grayscale(100%) blur(100px)',
+        rotate: 30,
+        y: '200vh'
+      }, {
+        filter: 'opacity(1) grayscale(0%) blur(0px)',
+        rotate: 0,
+        y: '50vh'
+      }, '<')
+
+      // Out
+      tl.fromTo(curtain3, {
+        filter: 'opacity(0) grayscale(100%)',
+        rotate: -40,
+        y: '-100vh'
+      }, {
+        filter: 'opacity(1) grayscale(0%)',
+        rotate: 0,
+        y: '0vh'
+      }, 'start-=.4')
+      .fromTo(curtain4, {
+        filter: 'opacity(0) grayscale(100%)',
+        rotate: -40,
+        y: '200vh'
+      }, {
+        filter: 'opacity(1) grayscale(0%)',
+        rotate: 0,
+        y: '50vh'
+      }, '<')
     }
   }, [], curtainsRef)
 
   return <div ref={curtainsRef} className={styles.curtains}>
-    <div data-curtain-first className={styles.curtain}></div>
-    <div data-curtain-second className={styles.curtain}></div>
+    <div data-curtain className={styles.curtain}></div>
+    <div data-curtain className={styles.curtain}></div>
+    <div data-curtain className={styles.curtain}></div>
+    <div data-curtain className={styles.curtain}></div>
   </div>
 }
