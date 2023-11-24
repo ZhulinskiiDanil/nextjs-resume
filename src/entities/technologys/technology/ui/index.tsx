@@ -1,8 +1,10 @@
 'use client';
 import styles from './main.module.scss'
-import clsx from 'clsx';
 import { getTextIndexByProgress } from './model/getTextByProgress';
 import { uuid } from '@/common/funcs/uuid';
+import clsx from 'clsx';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all'
 
 // Components
 import Image from 'next/image'
@@ -10,8 +12,8 @@ import { Button } from '@/shared/ui'
 import { Tags } from '@/entities/tags/ui'
 
 // Hooks
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap';
+import { useRef, useState } from 'react'
+import { useGSAP } from '@gsap/react'
 
 type TechnologyProps = {
   type: string
@@ -34,16 +36,18 @@ export function Technology({
     id: uuid(), content: elm
   }))
 
-  useEffect(() => {
+  useGSAP(() => {
     const elm = technologyRef.current
     if (!elm) return
 
+    gsap.registerPlugin(ScrollTrigger)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: elm,
         start: 'top bottom-=30%',
         end: 'bottom bottom-=30%',
         scrub: true,
+        markers: true,
         onUpdate: (self) => {
           elm.style.setProperty('--animationProgress', String(self.progress))
         
@@ -59,24 +63,12 @@ export function Technology({
         }
       },
     })
-
-    const tm = setTimeout(() => {
-      tl.from(elm, {
-        opacity: 0,
-        top: '20vh'
-      })
     
-      tl.to(elm, {
-        opacity: 1,
-        top: 0
-      });
-    }, 250)
-
-    return () => {
-      clearTimeout(tm)
-      tl.remove(tl)
-    }
-  }, [technologyRef])
+    tl.from(elm, {
+      alpha: 0,
+      y: '10vh'
+    })
+  }, [], technologyRef)
 
   return <div ref={technologyRef} className={styles.technology}>
     <div className={styles.cw}>

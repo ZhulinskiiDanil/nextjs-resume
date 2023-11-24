@@ -1,26 +1,27 @@
 import styles from './main.module.scss'
 import clsx from 'clsx'
+import gsap from 'gsap'
 
 // Hooks
 import { usePreLoader } from '@/shared/hooks/useLoader'
-import { useLayoutEffect, useState } from 'react'
+import { useGSAP } from '@gsap/react'
+import { useRef } from 'react'
 
 // Components
 import { InteractiveTitle } from '@/entities/interactiveTitle/ui'
-import { Tween } from 'react-gsap'
 
 export function FirstSection() {
   return <section className={styles.container}>
     <InteractiveTitle title='RESUME'/>
     <div
       className={styles.lineWrap}
-      style={{ marginTop: '-10vh' }}
+      style={{ marginTop: '-20vh' }}
     >
       <AnimatedLine />
     </div>
     <div
       className={styles.lineWrap}
-      style={{ marginTop: '30vh' }}
+      style={{ marginTop: '20vh' }}
     >
       <AnimatedLine reverse />
     </div>
@@ -31,31 +32,38 @@ export function FirstSection() {
 }
 
 function AnimatedLine({ reverse }: { reverse?: boolean }) {
-  const { onPreloader, removeListener } = usePreLoader()
-  const [vissible, setVissible] = useState(false)
+  const { onPreloader } = usePreLoader()
+  const pathRef = useRef<SVGPathElement>(null)
 
-  useLayoutEffect(() => {
-    const listener = onPreloader('end', () => {
-      setVissible(true)
-    })
+  useGSAP(() => {
+    const path = pathRef.current
 
-    return () => {
-      removeListener(listener)
+    if (path) {
+      const tl = gsap.timeline({
+        paused: true
+      }).to(path, {
+        duration: 3,
+        strokeDasharray: 2000,
+        stroke: 'yellow',
+        opacity: 0
+      })
+
+      const listener = onPreloader('end', () => {
+        tl.play()
+      }, { once: true })
     }
-  }, [])
+  }, [], pathRef)
 
-  if (!vissible) return <></>
   return (
     <svg className={clsx([
-      styles.line,
-      reverse && styles.reverse
+      styles.line, reverse && styles.reverse
     ])} xmlns="http://www.w3.org/2000/svg" width="2186" height="361" viewBox="0 0 2186 361" fill="none">
-      <Tween
-        from={{ svgDraw: [0, 0] }}
-        to={{ svgDraw: [1, 1] }}
-      >
-        <path d="M0.999939 357.694C520.074 365.014 700.801 30.7187 1142.75 4.75597C1584.69 -21.2068 1755.28 260.38 2185.55 266.035" stroke="#6AFF5E" strokeWidth="5"/>
-      </Tween>
+      <path
+        ref={pathRef}
+        d="M0.999939 357.694C520.074 365.014 700.801 30.7187 1142.75 4.75597C1584.69 -21.2068 1755.28 260.38 2185.55 266.035"
+        stroke="#6AFF5E"
+        strokeWidth="5"
+      />
     </svg>
   )
 }

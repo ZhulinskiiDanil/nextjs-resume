@@ -1,5 +1,5 @@
 import styles from './main.module.scss'
-import { startAnimation } from '../model/startAnimation'
+import { defineAnimationTL } from '../model/defineAnimationTL'
 
 // Funcs
 import { uuid } from '@/common/funcs/uuid'
@@ -7,6 +7,7 @@ import { uuid } from '@/common/funcs/uuid'
 // Hooks
 import { usePreLoader } from '@/shared/hooks/useLoader'
 import { useEffect, useMemo, useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 
 type InteractiveTitleProps = {
   title: string
@@ -15,30 +16,25 @@ type InteractiveTitleProps = {
 export function InteractiveTitle({
   title
 }: InteractiveTitleProps) {
+  const { onPreloader } = usePreLoader()
   const parentRef = useRef<HTMLDivElement | null>(null)
-  const { onPreloader, removeListener } = usePreLoader()
-  const letters = title.split('')
-  const spans = useMemo(() => (
-    letters.map(text => ({
+  const spans = useMemo(() => {
+    const letters = title.split('')
+
+    return letters.map(text => ({
       id: uuid(),
       content: text
     }))
-  ), [letters])
+  }, [title])
 
-  // GSAP Animations
-  useEffect(() => {
+  useGSAP(() => {
     if (parentRef.current) {
-      const listener = onPreloader('end', () => {
-        if (parentRef.current) {
-          startAnimation(parentRef.current)
-        }
-      })
-
-      return () => {
-        removeListener(listener)
-      }
+      const tl = defineAnimationTL(parentRef.current)
+      onPreloader('end', () => {
+        tl.play()
+      }, { once: true })
     }
-  }, [parentRef.current])
+  }, [], parentRef)
 
   // Looking for cursor
   useEffect(() => {

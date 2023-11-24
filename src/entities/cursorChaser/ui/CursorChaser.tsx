@@ -37,7 +37,7 @@ export function CursorChaser() {
     styles.container,
     mousedown ? styles.mousedown : ''
   ].join(' ')}>
-    <div className={styles.chaser} />
-    <div className={styles.smoothChaser} />
+    <div className={styles.chaser}></div>
+    <div className={styles.smoothChaser}></div>
   </div>
 }

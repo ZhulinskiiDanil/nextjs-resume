@@ -21,7 +21,7 @@
     pointer-events: none;
 
     &.reverse {
-      transform: rotateY(180deg) translate3d(-50%, -50%, 0);
+      transform: rotateY(180deg) rotateX(180deg) translate3d(-50%, -50%, 0);
       transform-origin: 0 0;
     }
   }
