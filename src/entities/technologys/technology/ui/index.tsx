@@ -47,7 +47,6 @@ export function Technology({
         start: 'top bottom-=30%',
         end: 'bottom bottom-=30%',
         scrub: true,
-        markers: true,
         onUpdate: (self) => {
           elm.style.setProperty('--animationProgress', String(self.progress))
         
