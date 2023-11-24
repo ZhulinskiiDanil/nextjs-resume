@@ -1,0 +1,19 @@
+.curtains {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  margin-top: -50vh;
+  visibility: hidden;
+  
+  .curtain {
+    position: fixed;
+    width: 200vw;
+    top: 0;
+    height: 50vh;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    background: #a4e25e;
+  }
+}

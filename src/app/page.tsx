@@ -14,6 +14,7 @@ import { Technologys } from '@/entities/technologys/ui'
 import { ScrollProgressBar } from '@/entities/scrollProgressBar/ui/ScrollProgressBar'
 import { Preloader } from '@/entities/preloader/ui/Preloader'
 import { Carousel } from '@/entities/carousel/ui'
+import { Curtains } from '@/entities/curtains/ui/Curtains'
 
 function Component() {
   return <div className={styles.container}>
@@ -31,6 +32,7 @@ function Component() {
       <Section>
         <Carousel />
       </Section>
+      <Curtains />
     </div>
   </div>
 }
