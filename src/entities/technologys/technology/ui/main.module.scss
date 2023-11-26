@@ -15,7 +15,7 @@ $one: calc(5vw + 1vh);
   width: 100vw;
   overflow: hidden;
 
-  background: #EEFFE7;
+  background: #EDE7FF;
   color: #000;
 
   .cw {
@@ -57,7 +57,7 @@ $one: calc(5vw + 1vh);
           top: 0;
           width: 100%;
           height: 100%;
-          background: #B1FFC3;
+          background: #e3ceff;
           filter: blur(20px);
         }
 
@@ -102,11 +102,11 @@ $one: calc(5vw + 1vh);
       
         font-size: $fontSize;
         line-height: calc(.8 + .35 * $progress);
-        color: #D2F4C3;
+        color: #D5C7FF;
 
         &.active {
           background: linear-gradient(
-            120deg, #000 $progress, #D2F4C3 $progress
+            120deg, #000 $progress, #D5C7FF calc($progress + 10%)
           );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;

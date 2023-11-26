@@ -13,12 +13,19 @@
   overflow: hidden;
   
   border-radius: 0.9375rem;
-  background: #252625;
-  transition: .3s ease;
+  background: #2a2a2c;
+  transition: .3s cubic-bezier(.17,.67,.33,1);
 
   &:hover {
-    background: #2d2e2d;
-    transform: scale(1.05);
+    $power: 8;
+    $x: calc(var(--offsetX) / $power);
+    $y: calc(var(--offsetY) / $power);
+
+    background: #4a4553;
+    transform: scale(1.05) translate3d(
+      calc($x - 50% / $power), calc($y - 50% / $power), 0
+    );
+    box-shadow: calc($x - .5rem) calc($y - .5rem) 3rem 0 rgba(0, 0, 0, 0.5);
   
     .shadow {
       opacity: 1;
@@ -64,7 +71,7 @@
       left: 50%;
       top: 50%;
       transform: translate3d(-50%, -50%, 0);
-      background: rgb(194, 255, 175);
+      background: rgb(203, 175, 255);
       width: 50%;
       height: 50%;
     }

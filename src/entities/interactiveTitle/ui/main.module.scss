@@ -26,7 +26,7 @@ $one: calc(1vh + 5vw);
 
     width: fit-content;
     position: relative;
-    color: #E8FFDA;
+    color: #ebe9ff;
     font-size: 12.5em;
     font-weight: 700;
     transform: rotate($rotateY) rotateX($rotateX) rotateY($rotateY);
@@ -43,7 +43,7 @@ $one: calc(1vh + 5vw);
       height: 25%;
       width: 100%;
 
-      background: #A8FF73;
+      background: #897EFF;
       opacity: 0; // GSAP Will show this block
     }
 

@@ -15,7 +15,7 @@ $one: calc(1vh + 5vw);
     position: relative;
     font-weight: inherit;
     font-size: inherit;
-    text-shadow: 0 0 .35em rgba(161, 231, 118, 0.1);
+    text-shadow: 0 0 .35em rgba(171, 118, 231, 0.1);
 
     &::after {
       content: '';
@@ -35,11 +35,11 @@ $one: calc(1vh + 5vw);
       position: relative;
       font-weight: inherit;
       font-size: inherit;
-      color: #1E201E;
+      color: #1f1e20;
       text-shadow:
-        0 0 .01em #585c58,
-        0 0 .01em #585c58,
-        0 0 .01em #585c58
+        0 0 .01em #5b585c,
+        0 0 .01em #5b585c,
+        0 0 .01em #5b585c
       ;
     }
 
@@ -51,7 +51,7 @@ $one: calc(1vh + 5vw);
       left: -.05em;
       top: -.05em;
       color: transparent;
-      -webkit-text-stroke: .01em #bce776;
+      -webkit-text-stroke: .01em #a776e7;
     }
   }
 }

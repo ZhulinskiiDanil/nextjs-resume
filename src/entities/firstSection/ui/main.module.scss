@@ -40,18 +40,18 @@
     
     padding: 1rem 1.6rem;
     border-radius: $borderRadius;
-    background: #33372F;
+    background: #322F37;
     color: white;
     cursor: pointer;
     transition: .15s ease, box-shadow .6s ease;
 
     &:hover {
-      background: #42473d;
-      box-shadow: 0 0 3.5rem 0 #42473d;
+      background: #3e3a44;
+      box-shadow: 0 0 3.5rem 0 #3e3a44;
 
       &::after {
         padding: calc($outlinePadding * .8);
-        border-color: #d4ffce;
+        border-color: #dbceff;
       }
     }
     
@@ -71,7 +71,7 @@
     }
 
     span {
-      color: #98FF87;
+      color: #A687FF;
     }
   }
 }

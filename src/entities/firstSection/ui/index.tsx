@@ -44,7 +44,7 @@ function AnimatedLine({ reverse }: { reverse?: boolean }) {
       }).to(path, {
         duration: 3,
         strokeDasharray: 2000,
-        stroke: 'yellow',
+        stroke: '#CAD0EC',
         opacity: 0
       })
 
@@ -61,7 +61,7 @@ function AnimatedLine({ reverse }: { reverse?: boolean }) {
       <path
         ref={pathRef}
         d="M0.999939 357.694C520.074 365.014 700.801 30.7187 1142.75 4.75597C1584.69 -21.2068 1755.28 260.38 2185.55 266.035"
-        stroke="#6AFF5E"
+        stroke="#897EFF"
         strokeWidth="5"
       />
     </svg>

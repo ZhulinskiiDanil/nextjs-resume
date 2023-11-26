@@ -12,7 +12,7 @@
   transition: .2s ease;
   padding: 0.625rem 1.25rem;
   border-radius: 0.625rem;
-  background: #344B40;
+  background: #665DBF;
   color: #fff;
 
   &.beta::after {
@@ -26,8 +26,8 @@
     right: -0.625rem;
     top: -0.625rem;
 
-    color: white;
-    background: #4DCC96;
+    color: #000;
+    background: #D6D2FF;
     border-radius: 0.25rem;
   }
 
@@ -37,11 +37,13 @@
 
     &::after {
       display: none;
+      background: #665DBF;
+      color: #fff;
     }
   }
 
   &.light {
-    background: #C8F5E0;
+    background: #D6D2FF;
     color: #000;
   }
 
