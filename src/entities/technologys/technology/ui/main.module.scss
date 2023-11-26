@@ -14,9 +14,53 @@ $one: calc(5vw + 1vh);
   transform: translate3d(-50%, 0, 0);
   width: 100vw;
   overflow: hidden;
-
-  background: #EDE7FF;
+  
   color: #000;
+
+  .background {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    div {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate3d(-50%, 0, 0);
+      height: 100%;
+      width: 400%;
+      background-position-x: 0vw;
+      transition: 1s cubic-bezier(.17,.67,.41,1);
+    }
+
+    div:nth-child(1) {
+      background-image: linear-gradient(
+        125deg, #DEDBFF 50%, transparent 50%
+      );
+
+      left: min(calc(100vw * var(--animationProgress) * 2.5), 150vw);
+    }
+
+    div:nth-child(2) {
+      background-image: linear-gradient(
+        125deg, #CAD0EC 50%, transparent 50%
+      );
+      
+      left: calc(-20% + 100vw * var(--animationProgress) * 1.15);
+    }
+
+    div:nth-child(3) {
+      background-image: linear-gradient(
+        125deg, #A2AFF0 50%, transparent 50%
+      );
+      
+      left: calc(-40% + 100vw * var(--animationProgress));
+    }
+  }
 
   .cw {
     max-width: var(--cw);
@@ -95,18 +139,20 @@ $one: calc(5vw + 1vh);
       letter-spacing: .01em;
       
       span {
+        --filled: 0;
+        $color: #9d96af;
+
         display: inline-block;
 
-        --filled: 0;
         $progress: calc(var(--filled) * 100%);
       
+        color: $color;
         font-size: $fontSize;
         line-height: calc(.8 + .35 * $progress);
-        color: #D5C7FF;
 
         &.active {
           background: linear-gradient(
-            120deg, #000 $progress, #D5C7FF calc($progress + 10%)
+            120deg, #000 $progress, $color calc($progress + 10%)
           );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;

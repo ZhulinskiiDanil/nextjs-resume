@@ -78,9 +78,10 @@ $one: calc(5vw + 1vh);
       top: 50%;
       height: 0;
       
+      font-family: 'Poppins', sans-serif;
+      font-size: calc($textHeight * .85);
       text-align: center;
       white-space: nowrap;
-      font-size: calc($textHeight * .85);
 
       -webkit-backface-visibility: hidden; 
       backface-visibility: hidden;
@@ -104,19 +105,20 @@ $one: calc(5vw + 1vh);
       &:nth-child(3n + 2) {
         .sub {
           -webkit-text-stroke: calc($one * .005) #fadf96;
-          text-shadow: 0 0 calc($one * 1) rgba(250, 223, 150, 0.2);
+          text-shadow: 0 0 calc($one * .4) rgba(250, 223, 150, 0.2);
         }
       }
 
       .value {
-        transform: translate3d(0, -50%, 0);
         height: $textHeight;
+        transform: translate3d(0, -50%, 0);
         transform-origin: 0 0;
       }
 
       .pre {
+        color: #bdaaff;
         font-weight: 200;
-        opacity: .6;
+        opacity: 1;
       }
 
       .sub {

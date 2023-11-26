@@ -4,7 +4,7 @@ import { getTextIndexByProgress } from './model/getTextByProgress';
 import { uuid } from '@/common/funcs/uuid';
 import clsx from 'clsx';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all'
+import { ScrollTrigger } from 'gsap/all';
 
 // Components
 import Image from 'next/image'
@@ -45,7 +45,7 @@ export function Technology({
       scrollTrigger: {
         trigger: elm,
         start: 'top bottom-=30%',
-        end: 'bottom bottom-=30%',
+        end: 'top+=400 bottom-=30%',
         scrub: true,
         onUpdate: (self) => {
           elm.style.setProperty('--animationProgress', String(self.progress))
@@ -70,6 +70,11 @@ export function Technology({
   }, [], technologyRef)
 
   return <div ref={technologyRef} className={styles.technology}>
+    <div className={styles.background}>
+      <div data-bg-fragment></div>
+      <div data-bg-fragment></div>
+      <div data-bg-fragment></div>
+    </div>
     <div className={styles.cw}>
       <div className={styles.main}>
         <div className={styles.head}>
