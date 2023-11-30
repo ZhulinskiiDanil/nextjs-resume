@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import TGBot from '@/app/telegram-bot'
 
-const message = `:date\nАктивный пользователь:\n\nIP - :ip`
+const message = `:date\nАктивный пользователь:\n\n`
 
 export async function GET(req: Request) {
   let res: string[] = []
