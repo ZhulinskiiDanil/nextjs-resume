@@ -1,6 +1,9 @@
 'use client'
 import styles from './styles/page.module.scss'
 
+// Hooks
+import { usePathname } from 'next/navigation'
+
 // Components
 import { PageLayout } from '@layout'
 import { Header, Footer, Content } from '@layout/components'
@@ -15,8 +18,15 @@ import { ScrollProgressBar } from '@/entities/scrollProgressBar/ui/ScrollProgres
 import { Preloader } from '@/entities/preloader/ui/Preloader'
 import { Carousel } from '@/entities/carousel/ui'
 import { Curtains } from '@/entities/curtains/ui/Curtains'
+import { useEffect } from 'react'
 
 function Component() {
+  const pathname = usePathname()
+  
+  useEffect(() => {
+    fetch(`${pathname}api/hello`)
+  }, [])
+
   return <div className={styles.container}>
     <Letters />
     <Preloader />
